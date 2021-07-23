@@ -3,10 +3,19 @@ import React, { useEffect, useState } from "react";
 import Bubbles from "./Bubbles";
 import ColorList from "./ColorList";
 import fetchColorService from '../services/fetchColorService';
+import axiosWithAuth from "../helpers/axiosWithAuth";
 
 const BubblePage = () => {
   const [colors, setColors] = useState([]);
   const [editing, setEditing] = useState(false);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get('colors')
+      .then(res => {
+        setColors(res.data)
+      })
+  }, [])
 
   const toggleEdit = (value) => {
     setEditing(value);
