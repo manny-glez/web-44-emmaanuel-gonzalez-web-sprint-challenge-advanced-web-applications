@@ -136,3 +136,22 @@ button {
   display:inline;
   width: 100px;
 }
+
+.my-login {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: solid black 6px;
+  border-radius: 10px;
+}
+
+.my-login input {
+  padding: 6px;
+  margin-bottom: 6px;
+}
+
+.my-login button {
+  padding: 6px;
+}
