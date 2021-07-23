@@ -17,7 +17,7 @@ function App() {
 
         <Route exact path="/" component={Login} />
 
-        <PrivateRoute component={BubblePage} exact path='/bubblePage'/>
+        <PrivateRoute component={BubblePage} exact path='/bubbles'/>
 
       </div>
     </Router>

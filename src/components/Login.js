@@ -34,7 +34,7 @@ const Login = () => {
     .post('http://localhost:5000/api/login', newUser)
     .then(res => {
       localStorage.setItem('token', res.data.payload)
-      history.push('/bubblePage')
+      history.push('/bubbles')
     })
 
   }
