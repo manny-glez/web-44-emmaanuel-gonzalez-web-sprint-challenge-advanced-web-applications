@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as yup from 'yup';
-// import axios from 'axios'
-// import { useHistory } from "react-router-dom";
+import axios from 'axios'
+import { useHistory } from "react-router-dom";
 
 const schema = yup.object().shape({
   username: yup.string().required('Username is required').min(2, 'username needs to be 2 chars min'),
@@ -20,14 +20,24 @@ const Login = () => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
 
-  // const history = useHistory();
+  const history = useHistory();
 
-  // axios
-  //   .post('http://localhost:5000/api/login', newUser)
-  //   .then(res => {
-  //     localStorage.setItem('token', res.data.payload)
-  //     history.push('/')
-  //   })
+  function handleSubmit(event) {
+    event.preventDefault()
+
+    const newUser = {
+      username: formValues.username,
+      password: formValues.password
+    }
+
+    axios
+    .post('http://localhost:5000/api/login', newUser)
+    .then(res => {
+      localStorage.setItem('token', res.data.payload)
+      history.push('/bubblePage')
+    })
+
+  }
 
   // const error = "";
   //replace with error state
@@ -35,15 +45,6 @@ const Login = () => {
   useEffect(() => {
     schema.isValid(formValues).then(valid => setDisabled(!valid))
   }, [formValues])
-
-  function handleSubmit(event) {
-    event.preventDefault()
-
-    // const newUser = {
-    //   username: formValues.username,
-    //   password: formValues.password
-    // }
-  }
 
   const setFormErrors = (name, value) => {
     yup.reach(schema, name).validate(value)
